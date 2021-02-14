@@ -71,3 +71,11 @@ img {
   padding:10px;
   color:coral
 }
+
+#not-found h3{
+  margin:220px 0px 0px 350px;
+  color:teal;
+ }
+ #search-icon{
+   margin-right:10px;
+ }

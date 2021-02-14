@@ -4,7 +4,7 @@ const galleryHeader = document.querySelector('.gallery-header');
 const searchBtn = document.getElementById('search-btn');
 const sliderBtn = document.getElementById('create-slider');
 const sliderContainer = document.getElementById('sliders');
-const countDiv=document.getElementById('count-image');
+const countDiv = document.getElementById('count-image');
 
 // selected image 
 let sliders = [];
@@ -18,32 +18,44 @@ const KEY = '15674931-a9d714b6e9d654524df198e00&q';
 // show images 
 const showImages = (images) => {
   imagesArea.style.display = 'block';
-  countDiv.innerHTML=" ";
+  countDiv.innerHTML = " ";
   gallery.innerHTML = '';
-  // show gallery title
-  galleryHeader.style.display = 'flex';
-  images.forEach(image => {
-    let div = document.createElement('div');
-    div.className = 'col-lg-3 col-md-4 col-xs-6 img-item mb-2';
-    div.innerHTML = ` <img class="img-fluid img-thumbnail" onclick=selectItem(event,"${image.webformatURL}") src="${image.webformatURL}" alt="${image.tags}">`;
-    gallery.appendChild(div)
-  })
+
+  if (images.length == 0) {
+    gallery.innerHTML = `
+    <div id="not-found" >
+    <h3><i class="fa fa-search" id="search-icon" aria-hidden="true"></i>Search result not found</h3>
+     </div>
+    
+    `
+  }
+
+  else {
+    // show gallery title
+    galleryHeader.style.display = 'flex';
+    images.forEach(image => {
+      let div = document.createElement('div');
+      div.className = 'col-lg-3 col-md-4 col-xs-6 img-item mb-2';
+      div.innerHTML = ` <img class="img-fluid img-thumbnail" onclick=selectItem(event,"${image.webformatURL}") src="${image.webformatURL}" alt="${image.tags}">`;
+      gallery.appendChild(div)
+    })
+  }
+
   toggleSpinner();
 }
 
 
 //Enter keypress function
-const handle=(e,id)=>{
-  if(e.key=='Enter')
-  {
+const handle = (e, id) => {
+  if (e.key == 'Enter') {
     document.getElementById(id).click();
   }
 }
 
 
 // toggle spinner added
-const toggleSpinner=(show)=>{
-  const spinner=document.getElementById('loading-spinner');
+const toggleSpinner = (show) => {
+  const spinner = document.getElementById('loading-spinner');
   spinner.classList.toggle('d-none');
 }
 
@@ -66,12 +78,12 @@ const selectItem = (event, img) => {
 
   if (item === -1) {
     sliders.push(img);
-  } 
-  
-  else {
-    sliders.splice(item,1);
   }
-  countDiv.innerHTML=`
+
+  else {
+    sliders.splice(item, 1);
+  }
+  countDiv.innerHTML = `
   <h4> <span id="image-number">${sliders.length}</span>  images selected</h4>
   `
 }

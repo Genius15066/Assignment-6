@@ -20,7 +20,8 @@
     <h4 class="mt-2 text-center">Search Image for create slider</h4>
     <div class="form-inline mt-3 d-flex justify-content-center">
       <div class="input-group col-md-6 mb-2">
-        <input type="text" class="form-control" id="search" onkeypress="handle(event,'search-btn')"  placeholder="nature">
+        <input type="text" class="form-control" id="search" onkeypress="handle(event,'search-btn')"
+          placeholder="nature">
       </div>
       <button type="button" id="search-btn" class="btn btn-primary mb-2">Search</button>
     </div>
@@ -28,24 +29,28 @@
       <div class="justify-content-around align-items-center mt-3 gallery-header mb-2">
         <h3 class="head-title text-center">Select image for create slider</h3>
         <div class="input-group col-md-3 mb-2 mb-md-0">
-          <input class="form-control" id="duration"  onkeypress="handle(event,'create-slider')" placeholder="slider change duration">
+          <input class="form-control" id="duration" onkeypress="handle(event,'create-slider')"
+            placeholder="slider change duration">
         </div>
         <button id="create-slider" class="btn btn-primary px-5">Create slider</button>
       </div>
+
+      <!-- spinner added -->
+      <div id="loading-spinner" class="d-none m-3">
+        <div class="d-flex justify-content-center ">
+          <div class="spinner-border text-secondary" role="status">
+            <span class="visually-hidden"></span>
+          </div>
+        </div>
+      </div>
+
       <div id="count-image"></div>
       <div class="row gallery">
 
       </div>
     </section>
 
-    <!-- spinner added -->
-    <div  id="loading-spinner" class="d-none"> 
-      <div  class="d-flex justify-content-center ">
-        <div class="spinner-border text-secondary" role="status">
-          <span class="visually-hidden"></span>
-        </div>
-      </div>
-    </div>
+
 
     <!-- slider -->
     <div class="main">
