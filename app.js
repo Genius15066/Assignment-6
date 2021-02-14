@@ -4,6 +4,8 @@ const galleryHeader = document.querySelector('.gallery-header');
 const searchBtn = document.getElementById('search-btn');
 const sliderBtn = document.getElementById('create-slider');
 const sliderContainer = document.getElementById('sliders');
+const countDiv=document.getElementById('count-image');
+
 // selected image 
 let sliders = [];
 
@@ -16,6 +18,7 @@ const KEY = '15674931-a9d714b6e9d654524df198e00&q';
 // show images 
 const showImages = (images) => {
   imagesArea.style.display = 'block';
+  countDiv.innerHTML=" ";
   gallery.innerHTML = '';
   // show gallery title
   galleryHeader.style.display = 'flex';
@@ -28,6 +31,7 @@ const showImages = (images) => {
   toggleSpinner();
 }
 
+
 //Enter keypress function
 const handle=(e,id)=>{
   if(e.key=='Enter')
@@ -35,6 +39,7 @@ const handle=(e,id)=>{
     document.getElementById(id).click();
   }
 }
+
 
 // toggle spinner added
 const toggleSpinner=(show)=>{
@@ -44,7 +49,7 @@ const toggleSpinner=(show)=>{
 
 
 const getImages = (query) => {
-  toggleSpinner();
+  // toggleSpinner();
   fetch(`https://pixabay.com/api/?key=${KEY}=${query}&image_type=photo&pretty=true`)
     .then(response => response.json())
     .then(data => showImages(data.hits))
@@ -56,9 +61,7 @@ let slideIndex = 0;
 
 const selectItem = (event, img) => {
   let element = event.target;
-  // element.classList.add('added');
   element.classList.toggle('added');
- 
   let item = sliders.indexOf(img);
 
   if (item === -1) {
@@ -66,9 +69,11 @@ const selectItem = (event, img) => {
   } 
   
   else {
-    // alert('Hey, Already added !')
     sliders.splice(item,1);
   }
+  countDiv.innerHTML=`
+  <h4> <span id="image-number">${sliders.length}</span>  images selected</h4>
+  `
 }
 
 //create slider function
@@ -140,6 +145,7 @@ searchBtn.addEventListener('click', function () {
   document.querySelector('.main').style.display = 'none';
   clearInterval(timer);
   const search = document.getElementById('search');
+  toggleSpinner();
   getImages(search.value)
   sliders.length = 0;
 })

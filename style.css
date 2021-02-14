@@ -64,3 +64,10 @@ img {
     width: 90%;
   }
 }
+
+#count-image h4{
+  text-align:center;
+  font-size: 18px;
+  padding:10px;
+  color:coral
+}
